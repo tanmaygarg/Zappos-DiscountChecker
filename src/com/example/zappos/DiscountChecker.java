@@ -87,11 +87,7 @@ static public int i=1;
 				if(pOff>=20)
 				{	int i=DiscountChecker.i++;
 					Button myButton = new Button(DiscountChecker.this);
-<<<<<<< HEAD
 			        myButton.setCompoundDrawables(icon, null, null, null);
-=======
-			        myButton.setCompoundDrawables(icon, icon, null, null);
->>>>>>> FETCH_HEAD
 			        myButton.setText(result.brandName+": "+result.productName+" "+result.percentOff);
 			        myButton.setId(i);
 			        @SuppressWarnings("unused")

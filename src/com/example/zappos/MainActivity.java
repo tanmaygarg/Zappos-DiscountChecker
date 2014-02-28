@@ -72,22 +72,22 @@ public class MainActivity extends Activity {
 		
 		toggleButton1.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
-		
+			Intent intent = new Intent(MainActivity.this, DiscountCheckerService.class);
+			Calendar cal = Calendar.getInstance();
+			PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
+			AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 				if(toggleButton1.isChecked()){
-					Calendar cal = Calendar.getInstance();
+					
 
-					Intent intent = new Intent(MainActivity.this, DiscountCheckerService.class);
-					PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, intent, 0);
-
-					AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 					//get notifications every 15 minutes
 					alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 900*1000, pintent); 
 				}
 				else{
-					stopService(new Intent(MainActivity.this, DiscountCheckerService.class));
-				
+					stopService(intent);
+					alarm.cancel(pintent);
 				}
 			}
 				
