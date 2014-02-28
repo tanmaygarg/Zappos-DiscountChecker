@@ -14,13 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="26dp"
         android:ems="10"
-        android:inputType="text"
-        android:hint="@string/search_text" >
-
-        <requestFocus />
-    </EditText>
+        android:hint="@string/search_text"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/search_button"
@@ -28,16 +25,56 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/search_edit_text"
         android:layout_alignRight="@+id/search_edit_text"
+        android:layout_below="@+id/search_edit_text"
+        android:layout_marginTop="45dp"
+        android:text="@string/search" 
+        android:drawableLeft="@drawable/search_icon"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/search" />
+        android:text="Get Notifications"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="ToggleButton" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/search_button"
-        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/search_button"
+        android:layout_below="@+id/toggleButton1"
+        android:layout_marginTop="24dp"
         android:text="@string/discount" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="14dp"
+        android:layout_toLeftOf="@+id/imageView1"
+        android:text="Powered By: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView1"
+        android:src="@drawable/zappos_logo" />
 
 </RelativeLayout>

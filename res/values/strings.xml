@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Zappos</string>
+    <string name="app_name">Zappos Discounts</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="search">search</string>
+    <string name="search">Search</string>
     <string name="search_text">Enter to Search</string>
     <string name="discount">Check Discounted Products</string>
 

@@ -3,11 +3,15 @@ package com.example.zappos;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -73,32 +77,54 @@ static public int i=1;
 				percentOff = percentOff.substring(0, percentOff.length()-1);
 				int pOff = Integer.parseInt(percentOff);
 				final String productUrl = result.productUrl;
+				final String productName = result.productName;
+				final String productId = result.productId;
+				final String originalPrice = result.originalPrice;
+				final String price = result.price;
+				final String percentOff1 = result.percentOff;
+				final Bitmap bitmap = result.productImage;
+                final BitmapDrawable icon = new BitmapDrawable(bitmap);
 				if(pOff>=20)
 				{	int i=DiscountChecker.i++;
 					Button myButton = new Button(DiscountChecker.this);
+			        myButton.setCompoundDrawables(icon, null, null, null);
 			        myButton.setText(result.brandName+": "+result.productName+" "+result.percentOff);
 			        myButton.setId(i);
 			        @SuppressWarnings("unused")
 					final int id_ = myButton.getId();
-
 			        LinearLayout layout = (LinearLayout) findViewById(R.id.linearLayout1);
 			        layout.addView(myButton);
-
+			        
 			        myButton.setOnClickListener(new View.OnClickListener() {
 			            public void onClick(View view) {
-			            	Toast.makeText(DiscountChecker.this,
-			                        "Keep Pressed to open product ", Toast.LENGTH_SHORT)
-			                        .show();
+			            	
+			            	AlertDialog alertDialog = new AlertDialog.Builder(DiscountChecker.this).create(); //Read Update
+			                alertDialog.setTitle(productName);
+			                alertDialog.setMessage("Current Price: "+price+"\nOriginal Price: "+originalPrice+"\n\nDiscount: "+percentOff1+"\n\nClick on continue to open URL. \nRemove to remove this item from your list.");
+			                alertDialog.setIcon(icon);
+			                		alertDialog.setButton("Continue", new DialogInterface.OnClickListener() {
+			                   public void onClick(final DialogInterface dialog, final int which) {
+			                	   final Uri uri = Uri.parse(productUrl);
+									 final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+									 startActivity(intent);
+			                   }
+			                });
+			                alertDialog.setButton2("Remove", new DialogInterface.OnClickListener() {
+				                   public void onClick(final DialogInterface dialog, final int which) {
+				                	   SharedPreferences pref = getBaseContext().getSharedPreferences("zappospref", Context.MODE_PRIVATE);
+				   			        SharedPreferences.Editor editor = pref.edit();  
+				   			        editor.remove(productId);
+				   			        editor.commit();
+				   			     Toast.makeText(DiscountChecker.this,
+					                        "Removed product "+productName+" from list.", Toast.LENGTH_SHORT)
+					                        .show();
+				                   }
+				                });
+
+			                alertDialog.show();  //<-- See This!
+			            	
 			            }
-			        });
-			        
-			        myButton.setOnLongClickListener(new View.OnLongClickListener() {
-			            public boolean onLongClick(View view) {
-			            	 Uri uri = Uri.parse(productUrl);
-							 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-							 startActivity(intent);
-							return false;
-			            }
+
 
 			        });
 				}
