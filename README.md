@@ -10,7 +10,7 @@ For selecting the products, user has to provide a search term and select the pro
 
 The search displays all the results including the various styles of the same products.
 
-Background service checks for the product discounts every 15 minutes.
+Background service checks for the product discounts every 15 minutes and sends a notification.
 
 ######To do: 
 - Update the code with comments.
