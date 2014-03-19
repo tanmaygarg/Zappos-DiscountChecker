@@ -12,9 +12,9 @@ The search displays all the results including the various styles of the same pro
 
 Background service checks for the product discounts every 15 minutes.
 
-To do: 
-1. Update the code with comments.
-2. Store the state of service toggle button.
-3. Error handling when the API is down.
+######To do: 
+- Update the code with comments.
+- Store the state of service toggle button.
+- Error handling when the API is down.
 
 ![alt tag](https://raw.github.com/tanmaygarg/Zappos-DiscountChecker/master/ScreenShot.png)
